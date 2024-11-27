@@ -1,10 +1,11 @@
-package br.com.appforge.kotlinhearthstonecards
+package br.com.appforge.kotlinhearthstonecards.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.com.appforge.kotlinhearthstonecards.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
