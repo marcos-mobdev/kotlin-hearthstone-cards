@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/java/br/com/appforge/kotlinhearthstonecards/util/Secret.kt
