@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityGalleryBinding
-import br.com.appforge.kotlinhearthstonecards.domain.model.CardItem
+import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardGalleryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,19 +35,26 @@ class GalleryActivity : AppCompatActivity() {
             insets
         }
 
-        //Adapter setup
+        //Adapter
+        val recyclerViewAdapter = initializeRecyclerView()
+
+        //ViewModel
+        cardGalleryViewModel.cards.observe(this){ cardList ->
+            recyclerViewAdapter.updateData(cardList)
+        }
+
+
+    }
+
+    fun initializeRecyclerView():CardGalleryAdapter{
         val customAdapter = CardGalleryAdapter(emptyList()){ card ->
-            startActivity(Intent(this, CardDetailsActivity::class.java))
+            val intent = Intent(this, CardDetailsActivity::class.java)
+            intent.putExtra("card",card)
+            startActivity(intent)
         }
         val recyclerView = binding.rvCards
         recyclerView.layoutManager = GridLayoutManager(this,3)
         recyclerView.adapter = customAdapter
-
-        //ViewModel
-        cardGalleryViewModel.cards.observe(this){ cardList ->
-            customAdapter.updateData(cardList)
-        }
-
-
+        return customAdapter
     }
 }

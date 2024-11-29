@@ -3,10 +3,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ItemCardBinding
-import br.com.appforge.kotlinhearthstonecards.domain.model.CardItem
+import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import com.squareup.picasso.Picasso
 
-class CardGalleryAdapter(private var dataSet: List<CardItem>, private val onItemClick: (CardItem) -> Unit) :
+class CardGalleryAdapter(private var dataSet: List<CardDetail>, private val onItemClick: (CardDetail) -> Unit) :
     RecyclerView.Adapter<CardGalleryAdapter.CardItemViewHolder>() {
 
     /**
@@ -14,7 +14,7 @@ class CardGalleryAdapter(private var dataSet: List<CardItem>, private val onItem
      * (custom ViewHolder)
      */
 
-    fun updateData(newDataSet: List<CardItem>){
+    fun updateData(newDataSet: List<CardDetail>){
         dataSet = newDataSet
         notifyDataSetChanged()
     }
@@ -22,14 +22,14 @@ class CardGalleryAdapter(private var dataSet: List<CardItem>, private val onItem
     inner class CardItemViewHolder(val binding: ItemCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(card: CardItem) {
+        fun bind(card: CardDetail) {
             //binding.textNameContact.text = contact.name
 
             Picasso.get()
                 .load(card.imagePath)
                 .resize(120,200)
                 .error(R.drawable.ic_error_24)
-                .placeholder(R.drawable.ic_image_24)
+                .placeholder(R.drawable.card_back)
                 .into(binding.imageView)
 
             itemView.setOnClickListener {
