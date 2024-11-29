@@ -12,7 +12,10 @@ A simple Android application that allows users to browse and view details of Hea
 ---
 
 ## Screenshots 📸
-*(Add some screenshots here to showcase the app)*
+<div>
+  <img src="cardGallery.png" alt="Gallery Screen" width="300" style="display:inline-block; margin-right: 10px;">
+  <img src="image.png" alt="Card Details" width="300" style="display:inline-block;">
+</div>
 
 ---
 
@@ -57,11 +60,11 @@ A simple Android application that allows users to browse and view details of Hea
 
 ## App Overview 📚
 
-1. **Home Screen**: Displays a list of Hearthstone cards in a RecyclerView.  
-   ![RecyclerView Example](path/to/your-image.png) *(Replace with actual image)*
+1. **Gallery Screen**: Displays a list of Hearthstone cards in a RecyclerView.  
+   ![RecyclerView Example](cardGallery.png) 
 
 2. **Card Details Screen**: Displays a larger image of the card and its details.  
-   ![Details Example](path/to/your-image.png) *(Replace with actual image)*
+   ![Details Example](image.png) 
 
 ---
 
