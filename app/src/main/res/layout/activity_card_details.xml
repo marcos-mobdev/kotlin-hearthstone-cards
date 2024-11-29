@@ -1,87 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.CardDetailsActivity">
+    >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-        <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            tools:context=".presentation.ui.CardDetailsActivity">
 
             <ImageView
                 android:id="@+id/cardImage"
                 android:layout_width="400dp"
                 android:layout_height="500dp"
-                app:srcCompat="@drawable/card_example" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/card_back" />
 
             <TextView
                 android:id="@+id/cardNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/cardFlavorText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardImage" />
 
             <TextView
                 android:id="@+id/cardShortText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Short"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardNameText" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="cardCostText,cardAttackText,cardHealthText" />
 
             <TextView
-                android:id="@+id/cardSetText"
-                android:layout_width="match_parent"
+                android:id="@+id/cardFlavorText"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/cardTypeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/cardFactionText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="Flavor"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardCostText" />
 
             <TextView
                 android:id="@+id/cardRarityText"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Rarity"
+                app:layout_constraintEnd_toStartOf="@+id/cardTypeText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardFlavorText" />
 
             <TextView
-                android:id="@+id/cardAttackText"
-                android:layout_width="match_parent"
+                android:id="@+id/cardTypeText"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardRarityText"
+                app:layout_constraintTop_toBottomOf="@+id/cardFlavorText" />
+
+            <TextView
+                android:id="@+id/cardFactionText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Faction"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardRarityText" />
+
+            <TextView
+                android:id="@+id/cardSetText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Set"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardFactionText" />
 
             <TextView
                 android:id="@+id/cardCostText"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="8dp"
+                android:text="💎"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/cardAttackText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardShortText" />
+
+            <TextView
+                android:id="@+id/cardAttackText"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="🗡"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/cardHealthText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardCostText"
+                app:layout_constraintTop_toBottomOf="@+id/cardShortText" />
 
             <TextView
                 android:id="@+id/cardHealthText"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
-    </ScrollView>
+                android:layout_marginTop="8dp"
+                android:text="🩸"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardAttackText"
+                app:layout_constraintTop_toBottomOf="@+id/cardShortText" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</ScrollView>
+

@@ -29,4 +29,8 @@ class CardGalleryViewModel @Inject constructor(
             _cardsList.postValue(listCards)
         }
     }
+
+
+
+
 }

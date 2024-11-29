@@ -2,6 +2,8 @@ package br.com.appforge.kotlinhearthstonecards.presentation.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -48,16 +50,43 @@ class CardDetailsActivity : AppCompatActivity() {
                     .error(R.drawable.ic_error_24)
                     .placeholder(R.drawable.card_back)
                     .into(cardImage)
-                cardNameText.text = card.name
-                cardFlavorText.text = card.flavor
-                cardShortText.text = card.text
-                cardSetText.text = card.cardSet
-                cardTypeText.text = card.type
-                cardFactionText.text = card.faction
-                cardRarityText.text = card.rarity
-                cardAttackText.text = card.attack.toString()
-                cardCostText.text = card.cost.toString()
-                cardHealthText.text = card.health.toString()
+
+                val formattedText = card.name
+                    .replace("<b>", " ")
+
+
+                cardNameText.text = Html.fromHtml(formattedText, Html.FROM_HTML_MODE_LEGACY)
+
+                //Text nullable
+                cardShortText.visibility = if (card.text != null) View.VISIBLE else View.GONE
+                cardShortText.text = card.text ?: ""
+
+                //Cost nullable
+                cardCostText.visibility = if (card.cost != null) View.VISIBLE else View.GONE
+                cardCostText.text = "\uD83D\uDC8E ${card.cost.toString()}" ?: ""
+
+                //Attack nullable
+                cardAttackText.visibility = if (card.attack != null) View.VISIBLE else View.GONE
+                cardAttackText.text = "\uD83D\uDDE1 ${card.attack.toString()}" ?: ""
+
+                //Health nullable
+                cardHealthText.visibility = if (card.health != null) View.VISIBLE else View.GONE
+                cardHealthText.text = "\uD83E\uDE78 ${card.health.toString()}" ?: ""
+
+                //Flavor nullable
+                cardFlavorText.visibility = if (card.flavor != null) View.VISIBLE else View.GONE
+                cardFlavorText.text = card.flavor ?: ""
+
+                //Faction nullable
+                cardFactionText.visibility = if (card.faction != null) View.VISIBLE else View.GONE
+                cardFactionText.text = "Faction: ${card.faction}" ?: ""
+
+                //Faction nullable
+                cardRarityText.visibility = if (card.rarity != null) View.VISIBLE else View.GONE
+                cardRarityText.text = "Rarity: ${card.rarity}" ?: ""
+
+                cardSetText.text = "Set: ${card.cardSet}"
+                cardTypeText.text = "Type: ${card.type}"
             }
         }
         /*
