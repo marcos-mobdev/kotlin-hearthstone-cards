@@ -11,5 +11,5 @@
         android:layout_height="200dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/card_example" />
+        tools:srcCompat="@drawable/card_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>
