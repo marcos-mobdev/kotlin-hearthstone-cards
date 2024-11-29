@@ -3,6 +3,7 @@ package br.com.appforge.kotlinhearthstonecards.presentation.ui
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -51,15 +52,17 @@ class CardDetailsActivity : AppCompatActivity() {
                     .placeholder(R.drawable.card_back)
                     .into(cardImage)
 
-                val formattedText = card.name
-                    .replace("<b>", " ")
-
-
-                cardNameText.text = Html.fromHtml(formattedText, Html.FROM_HTML_MODE_LEGACY)
+                cardNameText.text = card.name
 
                 //Text nullable
-                cardShortText.visibility = if (card.text != null) View.VISIBLE else View.GONE
-                cardShortText.text = card.text ?: ""
+                if (card.text != null) {
+                    cardShortText.visibility = View.VISIBLE
+                    cardShortText.text = formatCardText(card.text)
+
+                }else{
+                    cardShortText.visibility = View.GONE
+                    cardShortText.text = ""
+                }
 
                 //Cost nullable
                 cardCostText.visibility = if (card.cost != null) View.VISIBLE else View.GONE
@@ -95,6 +98,19 @@ class CardDetailsActivity : AppCompatActivity() {
 
          */
 
+
+
+    }
+
+    private fun formatCardText(text:String): String {
+        return text.replace("<b>", "")
+            .replace("</b>","")
+            .replace("<i>", " ")
+            .replace("</i>", " ")
+            .replace("$", "")
+            .replace("\\n", " ")
+            .replace("_"," ")
+            .replace("[x]","")
 
 
     }
