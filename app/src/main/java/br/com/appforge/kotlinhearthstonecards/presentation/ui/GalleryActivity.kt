@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityGalleryBinding
-import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardGalleryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

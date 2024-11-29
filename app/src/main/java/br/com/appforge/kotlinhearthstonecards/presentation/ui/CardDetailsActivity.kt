@@ -1,20 +1,14 @@
 package br.com.appforge.kotlinhearthstonecards.presentation.ui
-
 import android.os.Build
 import android.os.Bundle
-import android.text.Html
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityCardDetailsBinding
-import br.com.appforge.kotlinhearthstonecards.databinding.ActivityGalleryBinding
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
-import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardDetailsViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +18,6 @@ class CardDetailsActivity : AppCompatActivity() {
     private val binding by lazy{
         ActivityCardDetailsBinding.inflate(layoutInflater)
     }
-
-    //private val cardDetailsViewModel by viewModels<CardDetailsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +38,7 @@ class CardDetailsActivity : AppCompatActivity() {
 
         if(card!= null){
             with(binding){
+                //Draw image
                 Picasso.get()
                     .load(card.imagePath)
                     .error(R.drawable.ic_error_24)
@@ -92,14 +85,6 @@ class CardDetailsActivity : AppCompatActivity() {
                 cardTypeText.text = "Type: ${card.type}"
             }
         }
-        /*
-        cardDetailsViewModel.card.observe(this){ card->
-        }
-
-         */
-
-
-
     }
 
     private fun formatCardText(text:String): String {
