@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:id="@+id/main"
@@ -60,6 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardNameText" />
 
             <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/statsBarrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
@@ -77,31 +79,33 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardCostText" />
+                app:layout_constraintTop_toBottomOf="@id/statsBarrier" />
 
             <TextView
                 android:id="@+id/cardRarityText"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="Rarity"
-                app:layout_constraintEnd_toStartOf="@+id/cardTypeText"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardTypeText"
                 app:layout_constraintTop_toBottomOf="@+id/cardFlavorText" />
 
             <TextView
                 android:id="@+id/cardTypeText"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="Type"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardRarityText"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/cardRarityText"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardFlavorText" />
 
             <TextView
@@ -114,7 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardRarityText" />
+                app:layout_constraintTop_toBottomOf="@id/typeRarityBarrier" />
 
             <TextView
                 android:id="@+id/cardSetText"
@@ -163,6 +167,14 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cardAttackText"
                 app:layout_constraintTop_toBottomOf="@+id/cardShortText" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/typeRarityBarrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="cardRarityText, cardTypeText" />
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
