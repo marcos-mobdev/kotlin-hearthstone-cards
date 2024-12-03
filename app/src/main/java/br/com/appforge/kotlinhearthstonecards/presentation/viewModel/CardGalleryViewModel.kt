@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.appforge.kotlinhearthstonecards.domain.model.CardItem
+import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetAllCardsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,9 +14,9 @@ import javax.inject.Inject
 class CardGalleryViewModel @Inject constructor(
     private val getAllCardsUseCase: GetAllCardsUseCase
 ):ViewModel() {
-    private val _cardsList = MutableLiveData<List<CardItem>>()
+    private val _cardsList = MutableLiveData<List<CardDetail>>()
 
-    val cards : LiveData <List<CardItem>>
+    val cards : LiveData <List<CardDetail>>
         get() = _cardsList
 
     init {
