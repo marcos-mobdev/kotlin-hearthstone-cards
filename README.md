@@ -55,7 +55,12 @@ A simple Android application that allows users to browse and view details of Hea
 
 ### Architecture
 - **MVVM (Model-View-ViewModel)**: Ensures a clean separation of concerns and easy testing.
-
+  
+### Unit Testing 
+- **[Truth](https://google.github.io/truth/)**: For fluent and readable assertions in unit tests.
+- **[Mockito](https://site.mockito.org/)**: For mocking dependencies in unit tests.
+- **[Coroutine Test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)**: For testing coroutines and ensuring proper asynchronous behavior.
+- **[Core Testing](https://developer.android.com/training/testing)**: Android testing support library for handling lifecycle-aware components like `LiveData` and `ViewModel`.
 ---
 
 ## App Overview 📚
