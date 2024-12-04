@@ -16,10 +16,9 @@ class GetAllCardsUseCase @Inject constructor(
                 if(item.imagePath != null){
                     cardsWithImage.add(item)
                 }else{
-                    Log.i("info_card", "card without image")
+                    //Log.i("info_card", "card without image")
                 }
             }
-
             return cardsWithImage
         }catch (getAllCardsException:Exception){
             getAllCardsException.printStackTrace()

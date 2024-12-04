@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetAllCardsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,8 +24,8 @@ class CardGalleryViewModel @Inject constructor(
         getAllCards()
     }
 
-    private fun getAllCards() {
-        viewModelScope.launch {
+    fun getAllCards() {
+        viewModelScope.launch (Dispatchers.IO){
             val listCards = getAllCardsUseCase()
             _cardsList.postValue(listCards)
         }

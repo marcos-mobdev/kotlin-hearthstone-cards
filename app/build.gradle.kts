@@ -43,6 +43,16 @@ android {
 
 dependencies {
 
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
     val lifecycle_version = "2.8.7"
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
