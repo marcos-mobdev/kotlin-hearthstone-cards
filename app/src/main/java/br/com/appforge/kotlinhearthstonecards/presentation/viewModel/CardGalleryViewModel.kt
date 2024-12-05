@@ -27,6 +27,7 @@ class CardGalleryViewModel @Inject constructor(
     fun getAllCards() {
         viewModelScope.launch (Dispatchers.IO){
             val listCards = getAllCardsUseCase()
+
             _cardsList.postValue(listCards)
         }
     }

@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CardGalleryAdapter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: CardGalleryAdapter (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CardGalleryAdapter</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CardGalleryAdapter$CardItemViewHolder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.ViewGroup
+&nbsp;import androidx.recyclerview.widget.RecyclerView
+&nbsp;import br.com.appforge.kotlinhearthstonecards.R
+&nbsp;import br.com.appforge.kotlinhearthstonecards.databinding.ItemCardBinding
+&nbsp;import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
+&nbsp;import com.squareup.picasso.Picasso
+&nbsp;
+<b class="nc">&nbsp;class CardGalleryAdapter(private var dataSet: List&lt;CardDetail&gt;, private val onItemClick: (CardDetail) -&gt; Unit) :</b>
+<b class="nc">&nbsp;    RecyclerView.Adapter&lt;CardGalleryAdapter.CardItemViewHolder&gt;() {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Provide a reference to the type of views that you are using
+&nbsp;     * (custom ViewHolder)
+&nbsp;     */
+&nbsp;
+&nbsp;    fun updateData(newDataSet: List&lt;CardDetail&gt;){
+<b class="nc">&nbsp;        dataSet = newDataSet</b>
+<b class="nc">&nbsp;        notifyDataSetChanged()</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    inner class CardItemViewHolder(val binding: ItemCardBinding) :</b>
+<b class="nc">&nbsp;        RecyclerView.ViewHolder(binding.root) {</b>
+&nbsp;
+&nbsp;        fun bind(card: CardDetail) {
+&nbsp;            //binding.textNameContact.text = contact.name
+&nbsp;
+<b class="nc">&nbsp;            Picasso.get()</b>
+<b class="nc">&nbsp;                .load(card.imagePath)</b>
+<b class="nc">&nbsp;                .resize(120,200)</b>
+<b class="nc">&nbsp;                .error(R.drawable.ic_error_24)</b>
+<b class="nc">&nbsp;                .placeholder(R.drawable.card_back)</b>
+<b class="nc">&nbsp;                .into(binding.imageView)</b>
+&nbsp;
+<b class="nc">&nbsp;            itemView.setOnClickListener {</b>
+<b class="nc">&nbsp;                onItemClick(card)</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // Create new views (invoked by the layout manager)
+&nbsp;    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): CardItemViewHolder {
+&nbsp;        // Create a new view, which defines the UI of the list item
+<b class="nc">&nbsp;        val layoutInflater = LayoutInflater.from(viewGroup.context)</b>
+<b class="nc">&nbsp;        val view = ItemCardBinding.inflate(layoutInflater, viewGroup, false)</b>
+&nbsp;
+<b class="nc">&nbsp;        return CardItemViewHolder(view)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Replace the contents of a view (invoked by the layout manager)
+&nbsp;    override fun onBindViewHolder(viewHolder: CardItemViewHolder, position: Int) {
+&nbsp;
+&nbsp;        // Get element from your dataset at this position and replace the
+&nbsp;        // contents of the view with that element
+<b class="nc">&nbsp;        viewHolder.bind(dataSet[position])</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Return the size of your dataset (invoked by the layout manager)
+<b class="nc">&nbsp;    override fun getItemCount() = dataSet.size</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-03 21:24</div>
+</div>
+</body>
+</html>
