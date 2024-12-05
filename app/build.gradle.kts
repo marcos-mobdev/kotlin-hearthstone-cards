@@ -43,15 +43,9 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.espresso.idling.resource)
+    implementation(libs.androidx.espresso.idling.resource)
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.junit.junit)
     testImplementation(libs.junit.junit)
     val lifecycle_version = "2.8.7"
     //Retrofit
@@ -84,6 +78,9 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //Contrib for RV instrumented tests
+    androidTestImplementation( "androidx.test.espresso:espresso-contrib:3.5.1")
+
 }
 kapt {
     correctErrorTypes = true
