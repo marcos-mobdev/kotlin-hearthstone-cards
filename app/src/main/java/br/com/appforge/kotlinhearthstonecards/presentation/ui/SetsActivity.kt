@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.set
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class SetsActivity : AppCompatActivity() {
             val intent = Intent(this, GalleryActivity::class.java)
             intent.putExtra("pathParam",binding.cardNameEditText.text.toString())
             intent.putExtra("cardSource", "SEARCH")
+            binding.cardNameEditText.setText("")
             startActivity(intent)
         }
 
@@ -43,7 +45,7 @@ class SetsActivity : AppCompatActivity() {
         }
     }
 
-    fun initializeRecyclerView():CardSetsAdapter{
+    private fun initializeRecyclerView():CardSetsAdapter{
         val customAdapter = CardSetsAdapter(emptyList()){ cardSet ->
             val intent = Intent(this, GalleryActivity::class.java)
             intent.putExtra("pathParam",cardSet)
