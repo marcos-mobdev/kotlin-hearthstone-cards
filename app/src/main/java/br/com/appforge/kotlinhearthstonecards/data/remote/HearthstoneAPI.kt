@@ -12,4 +12,7 @@ interface HearthstoneAPI {
 
     @GET("info")
     suspend fun getDataSets():Response<InfoResponse>
+
+    @GET("cards/search/{name}")
+    suspend fun searchCard(@Path("name")cardName:String): Response<CardListResponse>
 }

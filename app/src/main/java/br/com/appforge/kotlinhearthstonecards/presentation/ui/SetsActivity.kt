@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.set
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,12 +27,15 @@ class SetsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+
+        binding.btnSearch.setOnClickListener {
+            val intent = Intent(this, GalleryActivity::class.java)
+            intent.putExtra("pathParam",binding.cardNameEditText.text.toString())
+            intent.putExtra("cardSource", "SEARCH")
+            binding.cardNameEditText.setText("")
+            startActivity(intent)
         }
 
         val recyclerViewAdapter = initializeRecyclerView()
@@ -41,10 +45,11 @@ class SetsActivity : AppCompatActivity() {
         }
     }
 
-    fun initializeRecyclerView():CardSetsAdapter{
+    private fun initializeRecyclerView():CardSetsAdapter{
         val customAdapter = CardSetsAdapter(emptyList()){ cardSet ->
             val intent = Intent(this, GalleryActivity::class.java)
-            intent.putExtra("cardset",cardSet)
+            intent.putExtra("pathParam",cardSet)
+            intent.putExtra("cardSource", "CARDSET")
             startActivity(intent)
         }
         val recyclerView = binding.rvCardSets
