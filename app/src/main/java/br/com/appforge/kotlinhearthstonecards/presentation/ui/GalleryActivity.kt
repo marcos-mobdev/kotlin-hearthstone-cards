@@ -5,16 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityGalleryBinding
+import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardGalleryViewModel
+import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardsSource
 import dagger.hilt.android.AndroidEntryPoint
+import javax.sql.DataSource
 
 @AndroidEntryPoint
 class GalleryActivity : AppCompatActivity() {
@@ -27,24 +26,12 @@ class GalleryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-
-        val bundle = intent.extras?.getString("cardset")
-        var selectedCardSet = ""
-        if(bundle!= null){
-            selectedCardSet = bundle
-        }
-         Log.i("info_cardset", "bundle content: $selectedCardSet")
-
-        cardGalleryViewModel.getAllCards(selectedCardSet)
-
+        //Get cards
+        val pathParam = getPathParamFromBundle()
+        val cardSource = getCardSourceFromBundle()
+        cardGalleryViewModel.getAllCards(pathParam, cardSource)
 
         //Adapter
         val recyclerViewAdapter = initializeRecyclerView()
@@ -52,15 +39,17 @@ class GalleryActivity : AppCompatActivity() {
         //ViewModel
         cardGalleryViewModel.cards.observe(this){ cardList ->
             recyclerViewAdapter.updateData(cardList)
-            if(cardList.isEmpty()){
-                binding.noCardsText.visibility = View.VISIBLE
-            }else{
-                binding.noCardsText.visibility = View.INVISIBLE
-            }
+            checkIfCardListIsEmptyAndSetTextviewErrorVisibility(cardList)
         }
     }
 
-    fun initializeRecyclerView():CardGalleryAdapter{
+    private fun checkIfCardListIsEmptyAndSetTextviewErrorVisibility(cardList:List<CardDetail>){
+        binding.noCardsText.visibility =
+            if(cardList.isEmpty()) View.VISIBLE
+            else View.INVISIBLE
+    }
+
+    private fun initializeRecyclerView():CardGalleryAdapter{
         val customAdapter = CardGalleryAdapter(emptyList()){ card ->
             val intent = Intent(this, CardDetailsActivity::class.java)
             intent.putExtra("card",card)
@@ -70,5 +59,26 @@ class GalleryActivity : AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this,3)
         recyclerView.adapter = customAdapter
         return customAdapter
+    }
+
+    private fun getPathParamFromBundle():String{
+        val bundle = intent.extras?.getString("pathParam")
+        var pathParam = ""
+        if(bundle!= null){
+            pathParam = bundle
+        }
+        Log.i("info_cardset", "pathParam: $pathParam")
+        return pathParam
+
+    }
+
+    private fun getCardSourceFromBundle():CardsSource{
+        val bundle = intent.extras?.getString("cardSource")
+        var cardSource = CardsSource.valueOf(bundle ?: "SEARCH")
+        if(bundle!= null){
+            cardSource = CardsSource.valueOf(bundle)
+        }
+        Log.i("info_cardset", "cardSource: $cardSource")
+        return cardSource
     }
 }

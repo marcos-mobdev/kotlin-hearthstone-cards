@@ -6,4 +6,6 @@ interface CardRepository {
 
     suspend fun getAllCards(selectedCardSet:String):List<CardDetail>
 
+    suspend fun searchCard(cardName:String):List<CardDetail>
+
 }
