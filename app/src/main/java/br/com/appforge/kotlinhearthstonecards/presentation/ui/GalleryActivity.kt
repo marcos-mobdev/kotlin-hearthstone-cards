@@ -7,11 +7,13 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityGalleryBinding
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardGalleryViewModel
 import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardsSource
+import br.com.appforge.kotlinhearthstonecards.util.capitalizeFirstLetter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.sql.DataSource
 
@@ -28,10 +30,14 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
+
         //Get cards
         val pathParam = getPathParamFromBundle()
         val cardSource = getCardSourceFromBundle()
         cardGalleryViewModel.getAllCards(pathParam, cardSource)
+
+        setupActionBar(pathParam, cardSource)
 
         //Adapter
         val recyclerViewAdapter = initializeRecyclerView()
@@ -80,5 +86,13 @@ class GalleryActivity : AppCompatActivity() {
         }
         Log.i("info_cardset", "cardSource: $cardSource")
         return cardSource
+    }
+
+    private fun setupActionBar(pathParam:String, source:CardsSource){
+        val cardSourceText = source.name.capitalizeFirstLetter()
+        val toolbar:Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "$cardSourceText: $pathParam"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

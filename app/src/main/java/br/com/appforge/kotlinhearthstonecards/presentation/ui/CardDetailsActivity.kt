@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import br.com.appforge.kotlinhearthstonecards.R
 import br.com.appforge.kotlinhearthstonecards.databinding.ActivityCardDetailsBinding
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
+import br.com.appforge.kotlinhearthstonecards.util.formatCardText
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,7 +51,7 @@ class CardDetailsActivity : AppCompatActivity() {
                 //Text nullable
                 if (card.text != null) {
                     cardShortText.visibility = View.VISIBLE
-                    cardShortText.text = formatCardText(card.text)
+                    cardShortText.text = card.text.formatCardText()
 
                 }else{
                     cardShortText.visibility = View.GONE
@@ -87,16 +88,5 @@ class CardDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun formatCardText(text:String): String {
-        return text.replace("<b>", "")
-            .replace("</b>","")
-            .replace("<i>", " ")
-            .replace("</i>", " ")
-            .replace("$", "")
-            .replace("\\n", " ")
-            .replace("_"," ")
-            .replace("[x]","")
 
-
-    }
 }
