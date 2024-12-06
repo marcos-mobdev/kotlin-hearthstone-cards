@@ -13,9 +13,9 @@ A simple Android application that allows users to browse and view details of Hea
 
 ## Screenshots 📸
 <div>
-  <img src="main.png" alt="Main" width="300" style="display:inline-block;">
-  <img src="gallery.png" alt="Gallery Screen" width="300" style="display:inline-block; margin-right: 10px;">
-  <img src="details.png" alt="Card Details" width="300" style="display:inline-block;">
+  <img src="main.png" alt="Main" width="250" style="display:inline-block; margin-right: 16px;">
+  <img src="gallery.png" alt="Gallery Screen" width="250" style="display:inline-block; margin-right: 16px;">
+  <img src="details.png" alt="Card Details" width="250" style="display:inline-block; margin-right: 16px;">
 </div>
 
 ---
