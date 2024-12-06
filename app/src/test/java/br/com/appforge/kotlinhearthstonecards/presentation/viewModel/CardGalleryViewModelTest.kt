@@ -3,6 +3,7 @@ package br.com.appforge.kotlinhearthstonecards.presentation.viewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetAllCardsUseCase
+import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetCardsBySearchUseCase
 import br.com.appforge.kotlinhearthstonecards.utils.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -27,12 +28,15 @@ class CardGalleryViewModelTest {
     @Mock
     private lateinit var getAllCardsUseCase: GetAllCardsUseCase
 
+    @Mock
+    private lateinit var getCardsBySearchUseCase: GetCardsBySearchUseCase
+
     private lateinit var cardGalleryViewModel:CardGalleryViewModel
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        cardGalleryViewModel = CardGalleryViewModel(getAllCardsUseCase)
+        cardGalleryViewModel = CardGalleryViewModel(getAllCardsUseCase,getCardsBySearchUseCase)
     }
 
     @Test
@@ -46,7 +50,7 @@ class CardGalleryViewModelTest {
             )
         )
         //Act
-        cardGalleryViewModel.getAllCards("Wrath of Lich")
+        cardGalleryViewModel.getAllCards("Wrath of Lich", CardsSource.CARDSET)
 
         advanceUntilIdle()
 
