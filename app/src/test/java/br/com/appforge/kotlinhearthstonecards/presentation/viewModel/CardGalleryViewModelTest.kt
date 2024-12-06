@@ -12,6 +12,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -35,9 +36,9 @@ class CardGalleryViewModelTest {
     }
 
     @Test
-    fun `getAllCards should update _cardList and should not be empty`() = runTest{
+    fun `getAllCards should update cardList and should not be empty`() = runTest{
         //Arrange
-        Mockito.`when`(getAllCardsUseCase()).thenReturn(
+        Mockito.`when`(getAllCardsUseCase(anyString())).thenReturn(
             listOf(
                 CardDetail("123", "www.test.com/img", "Lich King", "Rise!", "Revive all ghouls", "Wrath of Lich King", "Undead", "Neutral", "Epic", 1,2,3),
                 CardDetail("234", "www.test.com/img1", "Jaina Proudmore", "Magic!", "Gains +2 magic damage", "Classic", "Human", "Alliance", "Rare", 2,3,4),
@@ -45,7 +46,7 @@ class CardGalleryViewModelTest {
             )
         )
         //Act
-        cardGalleryViewModel.getAllCards()
+        cardGalleryViewModel.getAllCards("Wrath of Lich")
 
         advanceUntilIdle()
 

@@ -4,6 +4,6 @@ import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 
 interface CardRepository {
 
-    suspend fun getAllCards():List<CardDetail>
+    suspend fun getAllCards(selectedCardSet:String):List<CardDetail>
 
 }

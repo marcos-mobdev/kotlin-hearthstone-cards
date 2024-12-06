@@ -11,7 +11,7 @@ data class CardDetail(
     val flavor: String?,
     val text: String?,
     val cardSet: String,
-    val type: String,
+    val type: String?,
     val faction: String?,
     val rarity: String?,
     val attack: Int?,

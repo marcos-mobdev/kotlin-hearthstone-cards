@@ -2,8 +2,12 @@ package br.com.appforge.kotlinhearthstonecards.di
 
 import br.com.appforge.kotlinhearthstonecards.data.remote.HearthstoneAPI
 import br.com.appforge.kotlinhearthstonecards.data.repository.CardRepositoryImpl
+import br.com.appforge.kotlinhearthstonecards.data.repository.CardSetRepositoryImpl
 import br.com.appforge.kotlinhearthstonecards.domain.repository.CardRepository
+import br.com.appforge.kotlinhearthstonecards.domain.repository.CardSetRepository
 import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetAllCardsUseCase
+import br.com.appforge.kotlinhearthstonecards.domain.useCase.GetCardSetsUseCase
+import br.com.appforge.kotlinhearthstonecards.presentation.viewModel.CardSetsViewModel
 import br.com.appforge.kotlinhearthstonecards.services.AuthInterceptor
 import br.com.appforge.kotlinhearthstonecards.util.Constants
 import dagger.Module
@@ -56,6 +60,16 @@ object AppModule {
     @Provides
     fun provideGetAllCardsUseCase(cardRepository: CardRepository):GetAllCardsUseCase{
         return GetAllCardsUseCase(cardRepository)
+    }
+
+    @Provides
+    fun provideCardSetRepository(hearthstoneAPI: HearthstoneAPI):CardSetRepository{
+        return CardSetRepositoryImpl(hearthstoneAPI)
+    }
+
+    @Provides
+    fun provideGetCardSetUseCase(cardSetRepository: CardSetRepository):GetCardSetsUseCase{
+        return GetCardSetsUseCase(cardSetRepository)
     }
 
 }

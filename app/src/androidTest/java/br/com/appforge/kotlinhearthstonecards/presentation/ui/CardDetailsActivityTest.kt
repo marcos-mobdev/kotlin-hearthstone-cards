@@ -24,10 +24,18 @@ import org.junit.Test
 class CardDetailsActivityTest{
 
     @get:Rule
-    val scenarioRule = ActivityScenarioRule(GalleryActivity::class.java)
+    val scenarioRule = ActivityScenarioRule(SetsActivity::class.java)
 
     @Test
     fun galleryActivity_openCardDetails_onItemClick(){
+
+        onView(withId(R.id.rvCardSets))
+            .perform(waitForRecyclerViewPopulation())
+            .check(matches(hasMinimumChildCount(1)))
+
+        onView(withId(R.id.rvCardSets))
+            .perform(actionOnItemAtPosition<CardGalleryAdapter.CardItemViewHolder>(1,click()))
+
         onView(withId(R.id.rvCards))
             .perform(waitForRecyclerViewPopulation())
             .check(matches(hasMinimumChildCount(1)))

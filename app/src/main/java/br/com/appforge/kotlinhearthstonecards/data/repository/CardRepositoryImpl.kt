@@ -10,27 +10,28 @@ import javax.inject.Inject
 class CardRepositoryImpl @Inject constructor(
     private val hearthstoneAPI: HearthstoneAPI
 ): CardRepository {
-    override suspend fun getAllCards(): List<CardDetail> {
+    override suspend fun getAllCards(selectedCardSet: String): List<CardDetail> {
         try{
-            val response = hearthstoneAPI.getDataSetCards()
+            val response = hearthstoneAPI.getDataSetCards(selectedCardSet)
             if(response.isSuccessful && response.body() != null){
                 val cardListDTO = response.body()
                 val cardList = mutableListOf<CardDetail>()
                 if(cardListDTO != null){
                     cardListDTO.map {
+                        //Log.i("card_details", "$it")
                         cardList.add(it.toCardDetail())
                     }
                     return cardList
                 }else{
-                    Log.e("info_card", "Card list is null!")
+                    //Log.e("info_card", "Card list is null!")
                 }
             }else{
-                Log.e("info_card", "Response message:${response.message()}")
+                //Log.e("info_card", "Response message:${response.errorBody()}")
             }
 
-        }catch(getUsersError:Exception){
-            getUsersError.printStackTrace( )
-            Log.e("info_card", "GetUsersError")
+        }catch(getCardsError:Exception){
+            //Log.e("info_card", "GetCardsError $getCardsError")
+            getCardsError.printStackTrace( )
         }
         return emptyList()
     }
