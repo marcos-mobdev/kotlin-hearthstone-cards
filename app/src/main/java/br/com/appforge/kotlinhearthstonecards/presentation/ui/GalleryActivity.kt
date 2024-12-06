@@ -3,6 +3,8 @@ package br.com.appforge.kotlinhearthstonecards.presentation.ui
 import CardGalleryAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,15 +35,29 @@ class GalleryActivity : AppCompatActivity() {
             insets
         }
 
+
+        val bundle = intent.extras?.getString("cardset")
+        var selectedCardSet = ""
+        if(bundle!= null){
+            selectedCardSet = bundle
+        }
+         Log.i("info_cardset", "bundle content: $selectedCardSet")
+
+        cardGalleryViewModel.getAllCards(selectedCardSet)
+
+
         //Adapter
         val recyclerViewAdapter = initializeRecyclerView()
 
         //ViewModel
         cardGalleryViewModel.cards.observe(this){ cardList ->
             recyclerViewAdapter.updateData(cardList)
+            if(cardList.isEmpty()){
+                binding.noCardsText.visibility = View.VISIBLE
+            }else{
+                binding.noCardsText.visibility = View.INVISIBLE
+            }
         }
-
-
     }
 
     fun initializeRecyclerView():CardGalleryAdapter{

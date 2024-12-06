@@ -11,6 +11,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -33,7 +34,7 @@ class GetAllCardsUseCaseTest {
     @Test
     fun `invoke should return a list of cards with image`() = runTest{
         //Arrange
-        Mockito.`when`(cardRepository.getAllCards()).thenReturn(
+        Mockito.`when`(cardRepository.getAllCards(anyString())).thenReturn(
             listOf(
                 CardDetail("123", null, "Lich King", "Rise!", "Revive all ghouls", "Wrath of Lich King", "Undead", "Neutral", "Epic", 1,2,3),
                 CardDetail("234", "www.test.com/img", "Jaina Proudmore", "Magic!", "Gains +2 magic damage", "Classic", "Human", "Alliance", "Rare", 2,3,4),
@@ -41,7 +42,7 @@ class GetAllCardsUseCaseTest {
             )
         )
         //Act
-        val actualListOfCards = getAllCardsUseCase()
+        val actualListOfCards = getAllCardsUseCase("Wrach of Lich King")
         //Assert
         assertThat(actualListOfCards.none { it.imagePath == null }).isTrue()
 

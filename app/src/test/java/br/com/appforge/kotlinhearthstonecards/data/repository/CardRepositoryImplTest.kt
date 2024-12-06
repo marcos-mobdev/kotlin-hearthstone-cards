@@ -6,10 +6,12 @@ import br.com.appforge.kotlinhearthstonecards.data.dto.CardListResponse
 import br.com.appforge.kotlinhearthstonecards.data.remote.HearthstoneAPI
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
+import org.hamcrest.core.AnyOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -33,7 +35,7 @@ class CardRepositoryImplTest {
     @Test
     fun `getAllCards should return a list of cards when successful`() = runTest{
         //Arrange
-        Mockito.`when`(hearthstoneAPI.getDataSetCards()).thenReturn(
+        Mockito.`when`(hearthstoneAPI.getDataSetCards(anyString())).thenReturn(
             Response.success(
                 CardListResponse().apply {
                     add(CardDetailsDTO("123", "www.test.com/img1", "Lich King", "Rise!", "Revive all ghouls", "Wrath of Lich King", "Undead", "Neutral", "Epic", 1,2,3))
@@ -43,8 +45,9 @@ class CardRepositoryImplTest {
             )
         )
         //Act
-        val actualCardList = cardRepositoryImpl.getAllCards()
+        val actualCardList = cardRepositoryImpl.getAllCards("Wrath of Lich King")
         //Assert
+        assertThat(actualCardList).isNotNull()
         assertThat(actualCardList).isNotEmpty()
     }
 

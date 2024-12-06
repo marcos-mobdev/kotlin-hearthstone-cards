@@ -1,6 +1,5 @@
 package br.com.appforge.kotlinhearthstonecards.domain.useCase
 
-import android.util.Log
 import br.com.appforge.kotlinhearthstonecards.domain.model.CardDetail
 import br.com.appforge.kotlinhearthstonecards.domain.repository.CardRepository
 import javax.inject.Inject
@@ -8,9 +7,9 @@ import javax.inject.Inject
 class GetAllCardsUseCase @Inject constructor(
     private val cardRepository: CardRepository
 ) {
-    suspend operator fun invoke():List<CardDetail>{
+    suspend operator fun invoke(selectedCardSet: String):List<CardDetail>{
         try{
-            val cards = cardRepository.getAllCards()
+            val cards = cardRepository.getAllCards(selectedCardSet)
             val cardsWithImage = mutableListOf<CardDetail>()
             cards.forEach { item->
                 if(item.imagePath != null){
