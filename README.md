@@ -5,16 +5,17 @@ A simple Android application that allows users to browse and view details of Hea
 ---
 
 ## Features ✨
-- **Browse Hearthstone cards** in a RecyclerView.
-- **View detailed information** about a selected card, including an enlarged image and its stats.
-- Built with **modern Android development best practices**.
-
+- **Search for Hearthstone cards by name**: Easily locate cards using a responsive search functionality.
+- **Explore cards by card set**: Browse through Hearthstone card sets displayed in a clean and organized RecyclerView layout.
+- **View detailed card information**: Access comprehensive details about selected cards, including high-resolution images and relevant stats.
+- **Modern Android development practices**: Built with up-to-date tools and frameworks to ensure reliability, maintainability, and efficient performance.
 ---
 
 ## Screenshots 📸
 <div>
-  <img src="cardGallery.png" alt="Gallery Screen" width="300" style="display:inline-block; margin-right: 10px;">
-  <img src="image.png" alt="Card Details" width="300" style="display:inline-block;">
+  <img src="main.png" alt="Main" width="300" style="display:inline-block;">
+  <img src="gallery.png" alt="Gallery Screen" width="300" style="display:inline-block; margin-right: 10px;">
+  <img src="details.png" alt="Card Details" width="300" style="display:inline-block;">
 </div>
 
 ---
@@ -55,30 +56,25 @@ A simple Android application that allows users to browse and view details of Hea
 
 ### Architecture
 - **MVVM (Model-View-ViewModel)**: Ensures a clean separation of concerns and easy testing.
-  
+
 ### Unit Testing 
 - **[Truth](https://google.github.io/truth/)**: For fluent and readable assertions in unit tests.
 - **[Mockito](https://site.mockito.org/)**: For mocking dependencies in unit tests.
 - **[Coroutine Test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)**: For testing coroutines and ensuring proper asynchronous behavior.
 - **[Core Testing](https://developer.android.com/training/testing)**: Android testing support library for handling lifecycle-aware components like `LiveData` and `ViewModel`.
----
 
-## App Overview 📚
-
-1. **Gallery Screen**: Displays a list of Hearthstone cards in a RecyclerView.  
-   ![RecyclerView Example](cardGallery.png) 
-
-2. **Card Details Screen**: Displays a larger image of the card and its details.  
-   ![Details Example](image.png) 
+### Instrumented Testing
+- **[Espresso](https://developer.android.com/training/testing/espresso)**: For UI testing and ensuring the app's UI interacts correctly with the user.
 
 ---
-
 ## API Integration 🌐
 
 The app integrates with the **Hearthstone API** via RapidAPI. This allows users to browse and view information about various Hearthstone cards.
 
 ### Endpoints Used:
+- `/cards/info`: Retrieves a list of cardSet names
 - `/cards/sets/{setCard}`: Retrieves a list of cards of the set.
+- `/cards/search/{cardName}`: Search for card by name
 
 ---
 
